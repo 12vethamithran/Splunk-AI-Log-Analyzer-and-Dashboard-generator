@@ -22,12 +22,10 @@ splunk-ai-log-analyzer/
 ├── main.py                    # Main entry point and orchestration
 ├── log_processor_py.py        # Core log processing and pattern matching
 ├── splunk_connection_py.py    # Splunk API integration
-├── .env                       # Configuration file (create from .env.example)
-├── .env.example               # Environment variables template
+├── .env                       # Configuration file 
 ├── generated_dashboard.xml    # Auto-generated dashboard (created after run)
 ├── README.md                  # This file
-├── LICENSE                    # MIT License
-└── requirements.txt           # Python dependencies
+└── LICENSE                    # MIT License
 ```
 
 ## 🧩 Core Components
@@ -339,6 +337,3 @@ A: Currently supports single files. Batch processing can be added as an enhancem
 
 ---
 
-**Built with ❤️ for the Splunk and security community**
-
-**⭐ If this project helped you, please give it a star on GitHub!**
