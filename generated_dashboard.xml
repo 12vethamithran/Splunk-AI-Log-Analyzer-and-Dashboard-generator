@@ -1,0 +1,88 @@
+DASHBOARD_OUTPUT.md
+Dashboard Generation Overview
+
+When you run main.py, the script automatically generates a Splunk dashboard definition in XML format.
+
+The generated file is stored in the project directory as dashboard.xml.
+This file can then be uploaded/imported into Splunk to visualize the syslog data.
+
+Generated Dashboard XML
+
+Below is the generated dashboard XML content:
+
+<dashboard version="1.1">
+  <label>AI Generated Syslog Dashboard</label>
+
+  <row>
+    <panel>
+      <chart>
+        <title>Events over Time</title>
+        <search>
+          <query>index=main sourcetype=syslog | timechart count</query>
+        </search>
+        <option name="charting.chart">line</option>
+      </chart>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <table>
+        <title>Raw Events (Latest 20)</title>
+        <search>
+          <query>index=main sourcetype=syslog | head 20</query>
+        </search>
+      </table>
+    </panel>
+  </row>
+
+  <row>
+    <panel>
+      <chart>
+        <title>Top Processes</title>
+        <search>
+          <query>index=main sourcetype=syslog | top process</query>
+        </search>
+        <option name="charting.chart">bar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Frequent Messages</title>
+        <search>
+          <query>index=main sourcetype=syslog | top message</query>
+        </search>
+        <option name="charting.chart">bar</option>
+      </chart>
+    </panel>
+  </row>
+
+</dashboard>
+
+How It Works
+
+Run the script:
+
+python3 main.py
+
+
+The script generates the dashboard file:
+
+dashboard.xml
+
+
+You can import dashboard.xml into Splunk via:
+
+Splunk Web → Dashboards → Create New → Import XML
+
+Or by placing it directly into the $SPLUNK_HOME/etc/apps/<your_app>/local/data/ui/views/ directory.
+
+✅ After importing, you’ll see panels for:
+
+Events over Time (line chart)
+
+Latest Raw Events (table)
+
+Top Processes (bar chart)
+
+Frequent Messages (bar chart)
